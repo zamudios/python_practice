@@ -1,3 +1,23 @@
+def better_largest_sum(list, n):
+    if n == len(list):
+        return sum(list)
+    largest_sum = 0
+    left = 0
+    right = n - 1
+    current_sum = 0 
+    for num in list:
+        if right >= len(list):
+            return largest_sum
+
+        if largest_sum == 0:
+            current_sum = sum(list[left:right+1])
+        else:
+            current_sum = list[right] + current_sum - list[left - 1]
+        largest_sum = max(largest_sum, current_sum)
+        left += 1
+        right += 1
+
+
 def largest_sum_of_size_n(list, n):
     if n == len(list):
         return sum(list)
@@ -40,4 +60,6 @@ sub_array_size = 3
 answer = largest_sum_of_size_3(input_list, sub_array_size)
 print(answer)
 answer = largest_sum_of_size_n(input_list, 4)
+print(answer)
+answer = better_largest_sum(input_list, 4)
 print(answer)
